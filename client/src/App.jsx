@@ -1,11 +1,13 @@
 import './App.scss'
 import Navbar from './components/Navbar/Navbar'
+import StarRating from './components/StarRating/StarRating'
 
 function App() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
+      <StarRating />
     </>
   )
 }
