@@ -9,14 +9,14 @@ export default function LevelDetails() {
             <h3 className="level-details__prompt">
                 Click one of the buttons below to see suggestions of activities to do at your energy level :)
             </h3>
-            <div className="level-details__btn-container">
+            {/* <div className="level-details__btn-container">
                 <button className='level-details__button level-details__button--indoor'>
                     <img className="level-details__icon level-details__icon--indoor" src="src/assets/icons/indoor-icon.png" alt="indoor activities button" />
                 </button>
                 <button className='level-details__button level-details__button--outdoor'>
                     <img className="level-details__icon level-details__icon--outdoor" src="src/assets/icons/outdoor-icon.png" alt="outdoor activities button" />
                 </button>
-            </div>
+            </div> */}
         </section>
     )
 }
