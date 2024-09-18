@@ -5,15 +5,14 @@ import StarRating from '../StarRating/StarRating.jsx'
 
 export default function EnergyLevelActivities() {
     const [energyLevel, setEnergyLevel] = useState(null);
-    const [energyData, setEnergyData] = useState(null);  // Store fetched data
+    const [energyData, setEnergyData] = useState(null);  
 
     useEffect(() => {
         if (energyLevel) {
             const fetchData = async () => {
                 try {
                     const response = await axios.get(`http://localhost:8080/levels/${energyLevel}`);
-                    console.log(response.data.data);
-                    setEnergyData(response.data);  // Store the entire data object
+                    setEnergyData(response.data); 
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
