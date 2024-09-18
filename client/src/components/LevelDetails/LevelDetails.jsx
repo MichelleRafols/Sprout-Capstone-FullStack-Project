@@ -6,7 +6,7 @@ export default function LevelDetails() {
             <h3 className="level-details__description">
                 You’re feeling low but not completely drained. Light, calming activities can refresh your mind and body. This is a good time to engage in gentle reflection.
             </h3>
-            <h3 className="level-details__activities-prompt">
+            <h3 className="level-details__prompt">
                 Click one of the buttons below to see suggestions of activities to do at your energy level :)
             </h3>
             <div className="level-details__btn-container">
