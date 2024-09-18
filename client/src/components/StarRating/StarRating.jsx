@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import './starRating.scss';
 
-export default function StarRating() {
+export default function StarRating({ setEnergyLevel }) {
 
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
+
+    const handleRatingClick = (currentRate) => {
+        setRating(currentRate);
+        setEnergyLevel(currentRate); // Pass the energy level up to the parent
+    };
 
     return (
         <section className="star-rating">
@@ -22,7 +27,7 @@ export default function StarRating() {
                             type="radio"
                             name="rating"
                             value={currentRate}
-                            onClick={() => setRating(currentRate)}
+                            onClick={() => handleRatingClick(currentRate)}
                             className="star-rating__input"
                         />
                         <FaStar
