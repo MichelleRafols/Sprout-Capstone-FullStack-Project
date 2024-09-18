@@ -44,8 +44,59 @@ const getOutdoorActivities = async (req, res) => {
     }
 }
 
+const getAllActivities = async (_req, res) => {
+    try {
+        const data = await knex('energy_levels AS e')
+            .select(
+                'e.id',
+                'e.level',
+                'e.description',
+                'i.activity_name AS indoor_activity_name',
+                'i.description AS indoor_activity_description',
+                'o.activity_name AS outdoor_activity_name',
+                'o.description AS outdoor_activity_description'
+            )
+            .leftJoin('indoor_activities AS i', 'i.energy_level_id', 'e.id')
+            .leftJoin('outdoor_activities AS o', 'o.energy_level_id', 'e.id')
+            .groupBy('e.id', 'i.id', 'o.id')
+            .orderBy('i.id', 'asc')
+            .orderBy('o.id', 'asc');
+
+        if (data.length === 0) {
+            return res.status(404).json({ message: `No data found for energy levels` });
+        }
+
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).send(`Cannot fetch activities for energy levels: ${error}`);
+    }
+};
+
+const getDistinctActivities = async (_req, res) => {
+    try {
+        const indoorActivities = await knex('indoor_activities')
+            .distinct('activity_name') // Get unique activity names
+            .select('activity_name', 'description'); 
+
+        const outdoorActivities = await knex('outdoor_activities')
+            .distinct('activity_name') // Get unique activity names
+            .select('activity_name', 'description');
+
+        if (!indoorActivities.length && !outdoorActivities.length) {
+            return res.status(404).json({ message: 'No activities found' });
+        }
+
+        res.json({
+            indoorActivities,
+            outdoorActivities
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching distinct activities' });
+    }
+};
 
 export {
     getIndoorActivities,
-    getOutdoorActivities
+    getOutdoorActivities,
+    getDistinctActivities
 }
