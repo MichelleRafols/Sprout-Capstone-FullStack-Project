@@ -1,7 +1,8 @@
 import './App.scss'
 import LevelDetails from './components/LevelDetails/LevelDetails'
 import Navbar from './components/Navbar/Navbar'
-import StarRating from './components/StarRating/StarRating'
+// import RadialMenu from './components/RadialMenu/RadialMenu'
+// import StarRating from './components/StarRating/StarRating'
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <>
       <Navbar />
       <LevelDetails />
+      {/* <RadialMenu /> */}
     </>
   )
 }
