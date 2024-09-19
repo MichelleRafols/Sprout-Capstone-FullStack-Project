@@ -1,0 +1,22 @@
+@import '../../styles/partials/global';
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/typography';
+@import '../../styles/partials/variables';
+
+.level-details{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1.5rem;
+
+    &__btn-container{
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+    }
+    
+    &__icon{
+        width: 80px;
+        height: 80px;
+    }
+}

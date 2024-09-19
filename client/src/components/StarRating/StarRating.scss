@@ -1,0 +1,28 @@
+.star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    
+    &__label {
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__input {
+        display: none; 
+    }
+
+    &__icon {
+        color: rgb(255, 242, 167);
+        transition: color 0.2s ease-in-out;
+
+        &--active {
+            color: rgb(255, 218, 55);
+        }
+    }
+}
