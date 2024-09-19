@@ -53,8 +53,10 @@ const getAllActivities = async (_req, res) => {
                 'e.description',
                 'i.activity_name AS indoor_activity_name',
                 'i.description AS indoor_activity_description',
+                'i.icon AS indoor_activity_icon',
                 'o.activity_name AS outdoor_activity_name',
-                'o.description AS outdoor_activity_description'
+                'o.description AS outdoor_activity_description',
+                'o.icon AS outdoor_activity_icon'
             )
             .leftJoin('indoor_activities AS i', 'i.energy_level_id', 'e.id')
             .leftJoin('outdoor_activities AS o', 'o.energy_level_id', 'e.id')
@@ -75,11 +77,11 @@ const getAllActivities = async (_req, res) => {
 const getDistinctActivities = async (_req, res) => {
     try {
         const indoorActivities = await knex('indoor_activities')
-            .distinct('activity_name') // Get unique activity names
+            .distinct('activity_name') 
             .select('activity_name', 'description'); 
 
         const outdoorActivities = await knex('outdoor_activities')
-            .distinct('activity_name') // Get unique activity names
+            .distinct('activity_name')
             .select('activity_name', 'description');
 
         if (!indoorActivities.length && !outdoorActivities.length) {
@@ -98,5 +100,6 @@ const getDistinctActivities = async (_req, res) => {
 export {
     getIndoorActivities,
     getOutdoorActivities,
+    getAllActivities,
     getDistinctActivities
 }
