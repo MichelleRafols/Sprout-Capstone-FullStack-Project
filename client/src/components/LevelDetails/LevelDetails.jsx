@@ -31,46 +31,32 @@ export default function EnergyLevelActivities() {
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
 
                     {/* Radial Menu for Indoor Activities */}
-                    {/* <RadialMenu
-                        title="Indoor Activities"
-                        activities={[
-                            {
-                                name: energyData.indoor_activity_name,
-                                description: energyData.indoor_activity_description,
-                            }
-                        ]}
-                    /> */}
+                    {energyData.indoorActivities && energyData.indoorActivities.length > 0 ? (
+                        <RadialMenu
+                            title="Indoor Activities"
+                            activities={energyData.indoorActivities.map(activity => ({
+                                name: activity.indoor_activity_name,
+                                description: activity.indoor_description,
+                                icon: activity.indoor_icon
+                            }))}
+                        />
+                    ) : (
+                        <p>No indoor activities available.</p>
+                    )}
 
                     {/* Radial Menu for Outdoor Activities */}
-                    {/* <RadialMenu
-                        title="Outdoor Activities"
-                        activities={[
-                            {
-                                name: energyData.outdoor_activity_name,
-                                description: energyData.outdoor_activity_description,
-                            }
-                        ]}
-                    /> */}
-
-                    {/* Radial Menu for Indoor Activities */}
-                    <RadialMenu
-                        title="Indoor Activities"
-                        activities={energyData.indoorActivities.map(activity => ({
-                            name: activity.activity_name,
-                            description: activity.description,
-                            icon: activity.icon 
-                        }))}
-                    />
-
-                    {/* Radial Menu for Outdoor Activities */}
-                    <RadialMenu
-                        title="Outdoor Activities"
-                        activities={energyData.outdoorActivities.map(activity => ({
-                            name: activity.activity_name,
-                            description: activity.description,
-                            icon: activity.icon 
-                        }))}
-                    />
+                    {energyData.outdoorActivities && energyData.outdoorActivities.length > 0 ? (
+                        <RadialMenu
+                            title="Outdoor Activities"
+                            activities={energyData.outdoorActivities.map(activity => ({
+                                name: activity.activity_name,
+                                description: activity.description,
+                                icon: activity.icon
+                            }))}
+                        />
+                    ) : (
+                        <p>No outdoor activities available.</p>
+                    )}
                 </>
             )}
         </div>
