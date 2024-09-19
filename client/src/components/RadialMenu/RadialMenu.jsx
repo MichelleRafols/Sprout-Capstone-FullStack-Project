@@ -18,17 +18,20 @@
 // };
 
 import React from 'react';
-import './radialMenu.scss';
+import './RadialMenu.scss';
 
-export default function RadialMenu({ activities }) {
+export default function RadialMenu({ title, activities }) {
     return (
-        <ul className="radial-menu">
-            {activities.map((activity, index) => (
-                <li key={index} className="radial-menu__item">
-                    <i className={`radial-menu__icon ${activity.icon}`}></i>
-                    <span>{activity.activity_name}</span>
-                </li>
-            ))}
-        </ul>
+        <div className="radial-menu">
+            <h3>{title}</h3>
+            <div className="menu-items">
+                {activities.map((activity, index) => (
+                    <div key={index} className="menu-item">
+                        <img src={activity.icon} alt={activity.name} />
+                        <p>{activity.name}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 }
