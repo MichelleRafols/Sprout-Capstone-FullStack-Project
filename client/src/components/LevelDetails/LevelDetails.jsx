@@ -31,7 +31,7 @@ export default function EnergyLevelActivities() {
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
 
                     {/* Radial Menu for Indoor Activities */}
-                    <RadialMenu
+                    {/* <RadialMenu
                         title="Indoor Activities"
                         activities={[
                             {
@@ -39,10 +39,10 @@ export default function EnergyLevelActivities() {
                                 description: energyData.indoor_activity_description,
                             }
                         ]}
-                    />
+                    /> */}
 
                     {/* Radial Menu for Outdoor Activities */}
-                    <RadialMenu
+                    {/* <RadialMenu
                         title="Outdoor Activities"
                         activities={[
                             {
@@ -50,6 +50,26 @@ export default function EnergyLevelActivities() {
                                 description: energyData.outdoor_activity_description,
                             }
                         ]}
+                    /> */}
+
+                    {/* Radial Menu for Indoor Activities */}
+                    <RadialMenu
+                        title="Indoor Activities"
+                        activities={energyData.indoorActivities.map(activity => ({
+                            name: activity.activity_name,
+                            description: activity.description,
+                            icon: activity.icon 
+                        }))}
+                    />
+
+                    {/* Radial Menu for Outdoor Activities */}
+                    <RadialMenu
+                        title="Outdoor Activities"
+                        activities={energyData.outdoorActivities.map(activity => ({
+                            name: activity.activity_name,
+                            description: activity.description,
+                            icon: activity.icon 
+                        }))}
                     />
                 </>
             )}
