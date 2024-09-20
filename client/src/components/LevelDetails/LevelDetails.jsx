@@ -11,9 +11,11 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 
 library.add(fas);
 
-export default function EnergyLevelActivities() {
+export default function LevelDetails() {
     const [energyLevel, setEnergyLevel] = useState(null);
     const [energyData, setEnergyData] = useState(null);
+    const [showIndoorMenu, setShowIndoorMenu] = useState(false);
+    const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
     const [showIndoorMenu, setShowIndoorMenu] = useState(false);
     const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
 
@@ -31,23 +33,15 @@ export default function EnergyLevelActivities() {
         }
     }, [energyLevel]);
 
-    const handleIndoorClick = () => {
-        setShowIndoorMenu(prev => !prev);  // Toggle indoor menu
-    };
-
-    const handleOutdoorClick = () => {
-        setShowOutdoorMenu(prev => !prev); // Toggle outdoor menu
-    };
-
     const getIcon = (iconClass) => {
         // FontAwesome classes are typically in the format 'fa-solid fa-[icon-name]'
-        const iconParts = iconClass.split('');
+        const iconParts = iconClass.split(' ');
         const iconName = iconParts[1]?.replace('fa-', '');
         return <FontAwesomeIcon icon={['fas', iconName]} />;
     };
 
     return (
-        <div>
+        <div className="level-details">
             <StarRating setEnergyLevel={setEnergyLevel} />
             {energyData && (
                 <section className="level-details">
@@ -56,38 +50,43 @@ export default function EnergyLevelActivities() {
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
 
                     <div className="level-details__btn-container">
-                        <button onClick={handleIndoorClick}>
-                            <img className="level-details__icon level-details__icon-indoor" src={indoorIcon} alt="Indoor Activities" />
-                        </button>
-                        <button onClick={handleOutdoorClick}>
-                            <img className="level-details__icon level-details__icon-outdoor"src={outdoorIcon} alt="Outdoor Activities" />
-                        </button>
+                        {/* <Link> */}
+                            <img className="level-details__icon level-details__icon--indoor" src={indoorIcon} alt="Indoor Activities" />
+                        {/* </Link> */}
+
+                        <img className="level-details__icon level-details__icon--outdoor" src={outdoorIcon} alt="Outdoor Activities" />
                     </div>
 
-                    {showIndoorMenu && (
-
+                    {/* Radial Menu for Indoor Activities */}
+                    {/* {showIndoorMenu && (
                         <RadialMenu
                             title="Indoor Activities"
-                            activities={[{
-                                name: energyData.indoor_activity_name,
-                                description: energyData.indoor_activity_description,
-                                icon: getIcon(energyData.indoor_activity_icon)  
-                            }]}
+                            activities={[
+                                {
+                                    name: energyData.indoor_activity_name,
+                                    description: energyData.indoor_activity_description,
+                                    icon: getIcon(energyData.indoor_activity_icon)  // Dynamic Font Awesome Icon
+                                }
+                            ]}
                         />
-                    )}
+                    )} */}
 
-                    {showOutdoorMenu && (
+                    {/* Radial Menu for Outdoor Activities */}
+                    {/* {showOutdoorMenu && (
                         <RadialMenu
                             title="Outdoor Activities"
-                            activities={[{
-                                name: energyData.outdoor_activity_name,
-                                description: energyData.outdoor_activity_description,
-                                icon: getIcon(energyData.outdoor_activity_icon)  
-                            }]}
+                            activities={[
+                                {
+                                    name: energyData.outdoor_activity_name,
+                                    description: energyData.outdoor_activity_description,
+                                    icon: getIcon(energyData.outdoor_activity_icon)  // Dynamic Font Awesome Icon
+                                }
+                            ]}
                         />
-                    )}
-                </section>
+                    )} */}
+                </>
             )}
         </div>
     );
+}
 }
