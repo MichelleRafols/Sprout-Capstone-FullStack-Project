@@ -8,13 +8,18 @@ import './LevelDetails.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 library.add(fas);
 
 export default function LevelDetails() {
     const [energyLevel, setEnergyLevel] = useState(null);
     const [energyData, setEnergyData] = useState(null);
+    const navigate = useNavigate();
+
+    const handleNavigateToReflections = () => {
+        navigate('/reflections');
+    };
 
     useEffect(() => {
         if (energyLevel) {
@@ -38,9 +43,7 @@ export default function LevelDetails() {
                     <h2>Energy Level: {energyData.level}</h2>
                     <h3>{energyData.description}</h3>
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
-
                     <div className="level-details__btn-container">
-                        {/* Link for Indoor Activities */}
                         <Link to={`/levels/${energyLevel}/indoor-activities`}>
                             <img
                                 className="level-details__icon level-details__icon--indoor"
@@ -48,8 +51,6 @@ export default function LevelDetails() {
                                 alt="Indoor Activities"
                             />
                         </Link>
-
-                        {/* Link for Outdoor Activities */}
                         <Link to={`/levels/${energyLevel}/outdoor-activities`}>
                             <img
                                 className="level-details__icon level-details__icon--outdoor"
@@ -57,6 +58,10 @@ export default function LevelDetails() {
                                 alt="Outdoor Activities"
                             />
                         </Link>
+                    </div>
+                    <div className="level-details__reflection-section" onClick={handleNavigateToReflections}>
+                        <h2 className="level-details__reflection-title">Reflection</h2>
+                        <p className="level-details__reflection-text">Click here to view and write reflections on your day.</p>
                     </div>
                 </section>
             )}
