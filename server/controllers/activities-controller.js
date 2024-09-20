@@ -8,7 +8,8 @@ const getIndoorActivities = async (req, res) => {
         const indoorActivities = await knex("indoor_activities AS i")
             .select(
                 "i.activity_name as indoor_activity_name",
-                "i.description as indoor_activity_description"
+                "i.description as indoor_activity_description",
+                "i.icon as indoor_activity_icon"
             )
             .where(
                 "energy_level_id", energyLevel
@@ -29,7 +30,8 @@ const getOutdoorActivities = async (req, res) => {
         const outdoorActivities = await knex("outdoor_activities AS o")
             .select(
                 "o.activity_name as outdoor_activity_name",
-                "o.description as outdoor_activity_description"
+                "o.description as outdoor_activity_description",
+                "o.icon as outdoor_activity_icon"
             )
             .where(
                 "energy_level_id", energyLevel
@@ -77,12 +79,12 @@ const getAllActivities = async (_req, res) => {
 const getDistinctActivities = async (_req, res) => {
     try {
         const indoorActivities = await knex('indoor_activities')
-            .distinct('activity_name') 
-            .select('activity_name', 'description'); 
+            .distinct('activity_name')
+            .select('activity_name', 'description', 'icon');
 
         const outdoorActivities = await knex('outdoor_activities')
             .distinct('activity_name')
-            .select('activity_name', 'description');
+            .select('activity_name', 'description', 'icon');
 
         if (!indoorActivities.length && !outdoorActivities.length) {
             return res.status(404).json({ message: 'No activities found' });
