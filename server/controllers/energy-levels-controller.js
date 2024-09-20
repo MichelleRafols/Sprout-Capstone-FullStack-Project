@@ -14,8 +14,10 @@ const getELevelsList = async (_req, res) => {
                 "b.bible_version",
                 "i.activity_name as indoor_activity_name",
                 "i.description as indoor_activity_description",
+                'i.icon AS indoor_activity_icon',
                 "o.activity_name as outdoor_activity_name",
-                "o.description as outdoor_activity_description"
+                "o.description as outdoor_activity_description",
+                'o.icon AS outdoor_activity_icon'
             )
             .join(
                 "bible_verses AS b",
@@ -55,8 +57,10 @@ const getELevelItem = async (req, res) => {
                 "b.bible_version",
                 "i.activity_name as indoor_activity_name",
                 "i.description as indoor_activity_description",
+                'i.icon AS indoor_activity_icon',
                 "o.activity_name as outdoor_activity_name",
-                "o.description as outdoor_activity_description"
+                "o.description as outdoor_activity_description",
+                'o.icon AS outdoor_activity_icon'
             )
             .join(
                 "bible_verses AS b",
