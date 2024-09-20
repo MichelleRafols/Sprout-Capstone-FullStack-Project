@@ -2,20 +2,19 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating.jsx';
 import RadialMenu from '../RadialMenu/RadialMenu.jsx';
-import indoorIcon from '../../assets/icons/indoor-icon.png';  
-import outdoorIcon from '../../assets/icons/outdoor-icon.png'; 
+import indoorIcon from '../../assets/icons/indoor-icon.png';
+import outdoorIcon from '../../assets/icons/outdoor-icon.png';
 import './LevelDetails.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { Link, useParams } from 'react-router-dom';
 
 library.add(fas);
 
 export default function LevelDetails() {
     const [energyLevel, setEnergyLevel] = useState(null);
     const [energyData, setEnergyData] = useState(null);
-    const [showIndoorMenu, setShowIndoorMenu] = useState(false);
-    const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
 
     useEffect(() => {
         if (energyLevel) {
@@ -31,13 +30,6 @@ export default function LevelDetails() {
         }
     }, [energyLevel]);
 
-    const getIcon = (iconClass) => {
-        // FontAwesome classes are typically in the format 'fa-solid fa-[icon-name]'
-        const iconParts = iconClass.split(' ');
-        const iconName = iconParts[1]?.replace('fa-', '');
-        return <FontAwesomeIcon icon={['fas', iconName]} />;
-    };
-
     return (
         <div className="level-details">
             <StarRating setEnergyLevel={setEnergyLevel} />
@@ -48,40 +40,24 @@ export default function LevelDetails() {
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
 
                     <div className="level-details__btn-container">
-                        {/* <Link> */}
-                            <img className="level-details__icon level-details__icon--indoor" src={indoorIcon} alt="Indoor Activities" />
-                        {/* </Link> */}
+                        {/* Link for Indoor Activities */}
+                        <Link to={`/levels/${energyLevel}/indoor-activities`}>
+                            <img
+                                className="level-details__icon level-details__icon--indoor"
+                                src={indoorIcon}
+                                alt="Indoor Activities"
+                            />
+                        </Link>
 
-                        <img className="level-details__icon level-details__icon--outdoor" src={outdoorIcon} alt="Outdoor Activities" />
+                        {/* Link for Outdoor Activities */}
+                        <Link to={`/levels/${energyLevel}/outdoor-activities`}>
+                            <img
+                                className="level-details__icon level-details__icon--outdoor"
+                                src={outdoorIcon}
+                                alt="Outdoor Activities"
+                            />
+                        </Link>
                     </div>
-
-                    {/* Radial Menu for Indoor Activities */}
-                    {/* {showIndoorMenu && (
-                        <RadialMenu
-                            title="Indoor Activities"
-                            activities={[
-                                {
-                                    name: energyData.indoor_activity_name,
-                                    description: energyData.indoor_activity_description,
-                                    icon: getIcon(energyData.indoor_activity_icon)  // Dynamic Font Awesome Icon
-                                }
-                            ]}
-                        />
-                    )} */}
-
-                    {/* Radial Menu for Outdoor Activities */}
-                    {/* {showOutdoorMenu && (
-                        <RadialMenu
-                            title="Outdoor Activities"
-                            activities={[
-                                {
-                                    name: energyData.outdoor_activity_name,
-                                    description: energyData.outdoor_activity_description,
-                                    icon: getIcon(energyData.outdoor_activity_icon)  // Dynamic Font Awesome Icon
-                                }
-                            ]}
-                        />
-                    )} */}
                 </section>
             )}
         </div>
