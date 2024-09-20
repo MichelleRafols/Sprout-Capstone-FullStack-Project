@@ -1,11 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import StarRating from '../StarRating/StarRating.jsx'
+import StarRating from '../StarRating/StarRating.jsx';
 import RadialMenu from '../RadialMenu/RadialMenu.jsx';
+import indoorIcon from '../../assets/icons/indoor-icon.png';
+import outdoorIcon from '../../assets/icons/outdoor-icon.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons'; // Load all solid icons\
+import './LevelDetails.scss';
 
-export default function EnergyLevelActivities() {
+library.add(fas);
+
+export default function LevelDetails() {
     const [energyLevel, setEnergyLevel] = useState(null);
     const [energyData, setEnergyData] = useState(null);
+    const [showIndoorMenu, setShowIndoorMenu] = useState(false);
+    const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
 
     useEffect(() => {
         if (energyLevel) {
@@ -21,8 +31,15 @@ export default function EnergyLevelActivities() {
         }
     }, [energyLevel]);
 
+    const getIcon = (iconClass) => {
+        // FontAwesome classes are typically in the format 'fa-solid fa-[icon-name]'
+        const iconParts = iconClass.split(' ');
+        const iconName = iconParts[1]?.replace('fa-', '');
+        return <FontAwesomeIcon icon={['fas', iconName]} />;
+    };
+
     return (
-        <div>
+        <div className="level-details">
             <StarRating setEnergyLevel={setEnergyLevel} />
             {energyData && (
                 <>
@@ -30,36 +47,43 @@ export default function EnergyLevelActivities() {
                     <h3>{energyData.description}</h3>
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
 
+                    <div className="level-details__btn-container">
+                        {/* <Link> */}
+                            <img className="level-details__icon level-details__icon--indoor" src={indoorIcon} alt="Indoor Activities" />
+                        {/* </Link> */}
+
+                        <img className="level-details__icon level-details__icon--outdoor" src={outdoorIcon} alt="Outdoor Activities" />
+                    </div>
+
                     {/* Radial Menu for Indoor Activities */}
-                    {energyData.indoorActivities && energyData.indoorActivities.length > 0 ? (
+                    {/* {showIndoorMenu && (
                         <RadialMenu
                             title="Indoor Activities"
-                            activities={energyData.indoorActivities.map(activity => ({
-                                name: activity.indoor_activity_name,
-                                description: activity.indoor_description,
-                                icon: activity.indoor_icon
-                            }))}
+                            activities={[
+                                {
+                                    name: energyData.indoor_activity_name,
+                                    description: energyData.indoor_activity_description,
+                                    icon: getIcon(energyData.indoor_activity_icon)  // Dynamic Font Awesome Icon
+                                }
+                            ]}
                         />
-                    ) : (
-                        <p>No indoor activities available.</p>
-                    )}
+                    )} */}
 
                     {/* Radial Menu for Outdoor Activities */}
-                    {energyData.outdoorActivities && energyData.outdoorActivities.length > 0 ? (
+                    {/* {showOutdoorMenu && (
                         <RadialMenu
                             title="Outdoor Activities"
-                            activities={energyData.outdoorActivities.map(activity => ({
-                                name: activity.activity_name,
-                                description: activity.description,
-                                icon: activity.icon
-                            }))}
+                            activities={[
+                                {
+                                    name: energyData.outdoor_activity_name,
+                                    description: energyData.outdoor_activity_description,
+                                    icon: getIcon(energyData.outdoor_activity_icon)  // Dynamic Font Awesome Icon
+                                }
+                            ]}
                         />
-                    ) : (
-                        <p>No outdoor activities available.</p>
-                    )}
+                    )} */}
                 </>
             )}
         </div>
     );
-};
-
+}
