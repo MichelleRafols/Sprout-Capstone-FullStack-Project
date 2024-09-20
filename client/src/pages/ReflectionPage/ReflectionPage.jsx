@@ -1,6 +1,6 @@
 import './ReflectionPage.scss';
 
-export default function ReflectionsPage() {
+export default function ReflectionPage() {
     return (
         <div className="reflections-page">
             <h1 className="reflections-page__title">Reflections</h1>
