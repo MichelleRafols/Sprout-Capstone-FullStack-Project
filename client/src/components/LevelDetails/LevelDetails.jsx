@@ -2,18 +2,20 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating.jsx';
 import RadialMenu from '../RadialMenu/RadialMenu.jsx';
-import indoorIcon from '../../assets/icons/indoor-icon.png';
-import outdoorIcon from '../../assets/icons/outdoor-icon.png';
+import indoorIcon from '../../assets/icons/indoor-icon.png';  
+import outdoorIcon from '../../assets/icons/outdoor-icon.png'; 
+import './LevelDetails.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons'; // Load all solid icons\
-import './LevelDetails.scss';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 library.add(fas);
 
 export default function LevelDetails() {
     const [energyLevel, setEnergyLevel] = useState(null);
     const [energyData, setEnergyData] = useState(null);
+    const [showIndoorMenu, setShowIndoorMenu] = useState(false);
+    const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
     const [showIndoorMenu, setShowIndoorMenu] = useState(false);
     const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
 
@@ -42,7 +44,7 @@ export default function LevelDetails() {
         <div className="level-details">
             <StarRating setEnergyLevel={setEnergyLevel} />
             {energyData && (
-                <>
+                <section className="level-details">
                     <h2>Energy Level: {energyData.level}</h2>
                     <h3>{energyData.description}</h3>
                     <h3>"{energyData.verse_text}" ({energyData.reference} - {energyData.bible_version})</h3>
@@ -86,4 +88,5 @@ export default function LevelDetails() {
             )}
         </div>
     );
+}
 }

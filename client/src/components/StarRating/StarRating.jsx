@@ -9,7 +9,7 @@ export default function StarRating({ setEnergyLevel }) {
 
     const handleRatingClick = (currentRate) => {
         setRating(currentRate);
-        setEnergyLevel(currentRate); // Pass the energy level up to the parent
+        setEnergyLevel(currentRate); 
     };
 
     return (
