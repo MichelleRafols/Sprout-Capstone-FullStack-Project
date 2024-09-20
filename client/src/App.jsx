@@ -16,8 +16,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/:id/indoor-activities' element={<IndoorActivitiesPage />} />
-        <Route path='/:id/outdoor-activities' element={<OutdoorActivitiesPage />} />
+        <Route path='levels/:id/indoor-activities' element={<IndoorActivitiesPage />} />
+        <Route path='levels/:id/outdoor-activities' element={<OutdoorActivitiesPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       {/* <Footer /> */}
