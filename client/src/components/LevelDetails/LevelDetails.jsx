@@ -16,8 +16,6 @@ export default function LevelDetails() {
     const [energyData, setEnergyData] = useState(null);
     const [showIndoorMenu, setShowIndoorMenu] = useState(false);
     const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
-    const [showIndoorMenu, setShowIndoorMenu] = useState(false);
-    const [showOutdoorMenu, setShowOutdoorMenu] = useState(false);
 
     useEffect(() => {
         if (energyLevel) {
@@ -84,9 +82,9 @@ export default function LevelDetails() {
                             ]}
                         />
                     )} */}
-                </>
+                </section>
             )}
         </div>
     );
 }
-}
+
