@@ -13,6 +13,10 @@ const getReflectionItem = async (req, res) => {
                 "r.body",
                 "r.created_at"
             )
+            .where(
+                "r.id",
+                id
+            )
         if (!item) {
             return res.status(404).json({ message: `Item with ID ${id} not found` });
         }
