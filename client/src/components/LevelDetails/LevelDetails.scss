@@ -3,20 +3,109 @@
 @import '../../styles/partials/typography';
 @import '../../styles/partials/variables';
 
-.level-details{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 1.5rem;
+.level-details {
+    background-color: $light-brown;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.25rem 0.75rem $shadow-color;
+    margin: 0 auto;
+    text-align: center;
 
-    &__btn-container{
+    &__btn-container {
         display: flex;
-        justify-content: center;
-        gap: 4rem;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .level-details__icon {
+            width: 3.75rem;
+            height: 3.75rem;
+            border-radius: 50%;
+            padding: 0.8rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 0.25rem 0.625rem $shadow-color;
+            cursor: pointer;
+            margin-bottom: 1rem;
+
+            &:hover {
+                transform: scale(1.1);
+                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            &--indoor {
+                background-color: $soft-green;
+            }
+
+            &--outdoor {
+                background-color: $plant-green;
+            }
+
+            @include tablet {
+                width: 5rem;
+                height: 5rem;
+                padding: 1rem;
+            }
+
+            @include desktop {
+                width: 6.25rem;
+                height: 6.25rem;
+                padding: 1.2rem;
+            }
+        }
     }
-    
-    &__icon{
-        width: 80px;
-        height: 80px;
+
+    &__reflection-section {
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: $soft-green;
+        border-radius: 1rem;
+        box-shadow: 0px 0.25rem 0.625rem $shadow-color;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: $plant-green;
+        }
+
+        &__reflection-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: $earth-brown;
+
+            @include tablet {
+                font-size: 1.8rem;
+            }
+
+            @include desktop {
+                font-size: 2rem;
+            }
+        }
+
+        &__reflection-text {
+            font-size: 1.2rem;
+            color: $forest-green;
+
+            @include tablet {
+                font-size: 1.4rem;
+            }
+
+            @include desktop {
+                font-size: 1.6rem;
+            }
+        }
+
+        @include tablet {
+            padding: 1.5rem;
+        }
+
+        @include desktop {
+            padding: 2rem;
+        }
     }
 }
