@@ -30,6 +30,12 @@ export function up(knex) {
             table.text('description').notNullable();
             table.string('icon').notNullable();  // Column for storing icon name or path for outdoor activity
             table.string('event_id').nullable();  // Optional if using Eventbrite API
+        })
+        .createTable('reflections', (table) => {
+            table.increments('id').primary();
+            table.string('title').notNullable();
+            table.text('body').notNullable();
+            table.timestamp('created_at').defaultTo(knex.fn.now());
         });
 };
 
@@ -38,5 +44,6 @@ export function down(knex) {
         .dropTableIfExists('outdoor_activities')
         .dropTableIfExists('indoor_activities')
         .dropTableIfExists('bible_verses')
-        .dropTableIfExists('energy_levels');
+        .dropTableIfExists('energy_levels')
+        .dropTableIfExists('reflections');
 };
