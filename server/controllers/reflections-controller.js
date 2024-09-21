@@ -17,15 +17,36 @@ const getReflectionItem = async (req, res) => {
                 "r.id",
                 id
             )
-        if (!item) {
-            return res.status(404).json({ message: `Item with ID ${id} not found` });
+        if (item.length === 0) {
+            return res.status(404).json({ message: `Reflection with ID ${id} not found` });
         }
+
         res.status(200).json(item);
     } catch (error) {
-        res.status(500).send(`Error retrieving item with ID ${id}: ${error}`);
+        res.status(500).send(`Error retrieving reflection with ID ${id}: ${error}`);
     }
 };
 
+const getAllReflections = async (_req, res) => {
+    try {
+        const data = await knex("reflections AS r")
+            .select(
+                "r.id",
+                "r.title",
+                "r.body",
+                "r.created_at"
+            );
+        if (data.length === 0) {
+            return res.status(404).json({ message: `No data found for reflections` });
+        }
+
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).send(`Cannot fetch reflections: ${error}`);
+    }
+}
+
 export {
-    getReflectionItem
+    getReflectionItem,
+    getAllReflections
 };
