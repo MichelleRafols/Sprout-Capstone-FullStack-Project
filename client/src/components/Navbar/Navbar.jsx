@@ -1,6 +1,6 @@
 import './Navbar.scss';
 import logo from '../../assets/logo/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 export default function Navbar() {
@@ -13,8 +13,16 @@ export default function Navbar() {
                     </Link>
                 </li>
                 <ul className="navbar__sublist">
-                    <li className="navbar__item">Home</li>
-                    <li className="navbar__item">About</li>
+                    <li className="navbar__item">
+                        <NavLink to='/'>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li className="navbar__item">
+                        <NavLink to='/reflections'>
+                            Reflections
+                        </NavLink>
+                    </li>
                 </ul>
             </ul>
         </section>
