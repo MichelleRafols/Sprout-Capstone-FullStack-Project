@@ -1,0 +1,115 @@
+@import '../../styles/partials/global';
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/typography';
+@import '../../styles/partials/variables';
+
+.reflections-list-page {
+    padding: 2rem;
+    background-color: #fdfdfb; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+        font-size: 2.5rem;
+        color: $sprout-brown;
+        margin-bottom: 2rem;
+        text-shadow: 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05); 
+        font-weight: 600;
+    }
+
+    &__error-message {
+        color: #d32f2f; 
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .reflections-post-it {
+        background-color: #fffbe6; 
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        width: 15rem; 
+        min-height: 12rem; 
+        box-shadow: 0 0.25rem 0.75rem #0000001a; 
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transform: rotate(-1deg); 
+        border-left: 0.3125rem solid #c8e6c9; 
+
+        &:hover {
+            transform: rotate(0deg) translateY(-0.3rem); 
+            box-shadow: 0px 0.5rem 1rem #00000026; 
+        }
+
+        &__title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: $sprout-brown;
+            margin-bottom: 0.75rem;
+            text-align: center;
+            word-wrap: break-word;
+            line-height: 1.2;
+        }
+
+        &__body {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.6;
+            flex-grow: 1;
+            text-align: left;
+            word-wrap: break-word;
+        }
+
+        &__btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &__btn {
+            background-color: #a5d6a7; 
+            color: #fff;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 0.3rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 0.125rem 0.25rem #0000001a;
+
+            &--edit {
+                background-color: #b6e9b6; 
+            }
+
+            &--dlt {
+                background-color: #f1b0b0; 
+            }
+
+            &:hover {
+                transform: translateY(-0.2rem); 
+                background-color: #81c784; 
+            }
+
+            &--dlt:hover {
+                background-color: #f08a8a; 
+            }
+        }
+    }
+}
