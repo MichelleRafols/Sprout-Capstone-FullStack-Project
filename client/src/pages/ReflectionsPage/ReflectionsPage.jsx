@@ -12,11 +12,11 @@ export default function ReflectionsPage() {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault(); 
         setError('');
         setSuccessMessage('');
 
-        const newReflection = { title, body }; // Prepare the reflection data
+        const newReflection = { title, body }; 
 
         try {
             const response = await fetch(`${API_URL}/reflections`, {
@@ -28,7 +28,6 @@ export default function ReflectionsPage() {
             });
 
             if (!response.ok) {
-                // Extract error message from the response, if any
                 const errorData = await response.json();
                 const errorMessage = errorData.message || 'Failed to submit reflection';
                 throw new Error(errorMessage);
@@ -41,14 +40,12 @@ export default function ReflectionsPage() {
             setTitle('');  // Clear the title input
             setBody('');   // Clear the textarea
 
-            // Navigate to the reflections page or another relevant page
             navigate('/reflections');
         } catch (error) {
             console.error('Error submitting reflection:', error);
             setError(error.message || 'There was an error submitting your reflection. Please try again.');
         }
     };
-
 
     return (
         <section className="reflections-page">
