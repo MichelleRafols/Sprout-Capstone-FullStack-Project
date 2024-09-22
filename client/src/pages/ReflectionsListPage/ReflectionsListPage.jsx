@@ -3,10 +3,12 @@ import './ReflectionsListPage.scss';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../../utils/utils';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function ReflectionsListPage() {
     const [reflections, setReflections] = useState([]);
     const [error, setError] = useState('');
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const fetchReflections = async () => {
@@ -41,6 +43,10 @@ export default function ReflectionsListPage() {
         }
     };
 
+    const handleEdit = (id) => {
+        navigate(`/reflections/${id}/edit`);
+    };
+
     return (
         <section className="reflections-list-page">
             <h1 className="reflections-list-page__title">My Reflections</h1>
@@ -53,6 +59,7 @@ export default function ReflectionsListPage() {
                         <div className="reflections-post-it__btn-container">
                             <button
                                 className="reflections-post-it__btn reflections-post-it__btn--edit"
+                                onClick={() => handleEdit(reflection.id)}
                             >
                                 Edit
                             </button>
