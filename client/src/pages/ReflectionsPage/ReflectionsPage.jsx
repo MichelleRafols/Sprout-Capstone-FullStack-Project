@@ -37,8 +37,8 @@ export default function ReflectionsPage() {
             console.log('New item added:', data);
 
             setSuccessMessage('Reflection submitted successfully!');
-            setTitle('');  // Clear the title input
-            setBody('');   // Clear the textarea
+            setTitle(''); 
+            setBody('');  
 
             navigate('/reflections');
         } catch (error) {
