@@ -15,10 +15,12 @@ const getReflectionItem = async (req, res) => {
                 "r.created_at"
             )
             .where(
-                "r.id",
+                "r.id", 
                 id
             )
-        if (item.length === 0) {
+            .first(); 
+
+        if (!item) {
             return res.status(404).json({ message: `Reflection with ID ${id} not found` });
         }
 
