@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import IndoorActivitiesPage from './pages/IndoorActivitiesPage/IndoorActivitiesPage';
 import OutdoorActivitiesPage from './pages/OutdoorActivitiesPage/OutdoorActivitiesPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import ReflectionPage from './pages/ReflectionPage/ReflectionPage';
+import ReflectionsPage from './pages/ReflectionsPage/ReflectionsPage';
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='levels/:id/indoor-activities' element={<IndoorActivitiesPage />} />
         <Route path='levels/:id/outdoor-activities' element={<OutdoorActivitiesPage />} />
-        <Route path='/reflections' element={<ReflectionPage/>}/>
+        <Route path='/reflections' element={<ReflectionsPage/>}/>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       {/* <Footer /> */}
