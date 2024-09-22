@@ -78,7 +78,6 @@ export default function ReflectionsPage() {
                     Submit Reflection
                 </button>
 
-                {/* Display error or success messages */}
                 {error && <p className="error-message">{error}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}
             </form>
