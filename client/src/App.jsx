@@ -7,6 +7,7 @@ import OutdoorActivitiesPage from './pages/OutdoorActivitiesPage/OutdoorActiviti
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ReflectionsPage from './pages/ReflectionsPage/ReflectionsPage';
 import ReflectionsListPage from './pages/ReflectionsListPage/ReflectionsListPage';
+import EditReflectionPage from './pages/EditReflectionsPage/EditReflectionsPage';
 
 function App() {
 
@@ -15,10 +16,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='levels/:id/indoor-activities' element={<IndoorActivitiesPage />} />
-        <Route path='levels/:id/outdoor-activities' element={<OutdoorActivitiesPage />} />
+        <Route path='/levels/:id/indoor-activities' element={<IndoorActivitiesPage />} />
+        <Route path='/levels/:id/outdoor-activities' element={<OutdoorActivitiesPage />} />
         <Route path='/reflections' element={<ReflectionsPage/>}/>
         <Route path="/reflections/list" element={<ReflectionsListPage />} />
+        <Route path="/reflections/:id/edit" element={<EditReflectionPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       {/* <Footer /> */}
