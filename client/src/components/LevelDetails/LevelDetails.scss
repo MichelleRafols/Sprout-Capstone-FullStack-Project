@@ -132,7 +132,7 @@
 
         &-title {
             font-size: 1.8rem;
-            color: $plant-green;
+            color: $sprout-brown;
             margin-bottom: 0.5rem;
         }
 
@@ -221,7 +221,7 @@
         transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: $plant-green;
+            background-color: rgb(120, 221, 120);
         }
 
         &__reflection-title {
