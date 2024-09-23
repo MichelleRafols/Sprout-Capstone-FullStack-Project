@@ -4,38 +4,44 @@
 @import '../../styles/partials/variables';
 
 .reflections-page {
-    background-color: $light-brown;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 0.25rem 0.75rem $shadow-color;
-    max-width: 100%;
+    background-color: #fdfdfb;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+    max-width: 40rem; // Adjusted width to fit well
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &__form {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
     &__title {
-        font-size: 1.8rem;
-        color: $forest-green;
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        color: $sprout-brown;
+        margin-bottom: 1.5rem;
+        text-shadow: 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
+        font-weight: 600;
 
         @include tablet {
-            font-size: 2rem;
+            font-size: 2.8rem;
         }
 
         @include desktop {
-            font-size: 2.4rem;
+            font-size: 3rem;
         }
     }
 
     &__description {
         font-size: 1.2rem;
         color: $earth-brown;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
 
         @include tablet {
             font-size: 1.4rem;
@@ -47,21 +53,22 @@
     }
 
     &__title-container {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         width: 100%;
     }
 
     &__input-title {
         width: 100%;
-        padding: 0.8rem;
-        border: 0.0625rem solid $forest-green;
+        padding: 1rem;
+        border: 0.125rem solid $forest-green;
         border-radius: 0.5rem;
-        font-size: 1rem;
-        box-shadow: 0px 0.25rem 0.5rem $shadow-color;
+        font-size: 1.1rem;
+        box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+        background-color: #fffbe6; // Matching the post-it vibe
 
         &:focus {
             outline: none;
-            border-color: $plant-green;
+            border-color: lighten($forest-green, 10%);
         }
 
         @include tablet {
@@ -74,23 +81,24 @@
     }
 
     &__textarea-container {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         width: 100%;
     }
 
     &__textarea {
         width: 100%;
-        height: 9.375rem;
-        padding: 0.8rem;
-        border: 0.0625rem solid $forest-green;
+        height: 10rem;
+        padding: 1rem;
+        border: 0.125rem solid $forest-green;
         border-radius: 0.5rem;
         resize: vertical;
-        font-size: 1rem;
-        box-shadow: 0px 0.25rem 0.5rem $shadow-color;
+        font-size: 1.1rem;
+        box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+        background-color: #fffbe6; // Matching the post-it vibe
         
         &:focus {
             outline: none;
-            border-color: $plant-green;
+            border-color: lighten($forest-green, 10%);
         }
 
         @include tablet {
@@ -105,29 +113,42 @@
     }
 
     &__submit-btn {
-        margin-top: 1.5rem;
-        padding: 0.8rem 2rem;
-        background-color: $forest-green;
-        color: white;
-        border: none;
+        margin-top: 2rem;
+        padding: 1rem 2.5rem;
+        background-color: #b6e9b6;
+        color: $sprout-brown;
+        border: 0.125rem solid $forest-green;
         border-radius: 0.5rem;
         cursor: pointer;
         font-size: 1.2rem;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 
         &:hover {
-            background-color: $plant-green;
+            background-color: lighten($forest-green, 10%);
+            color: #fff;
+            transform: translateY(-0.1rem);
+            border-color: darken($forest-green, 5%);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            transform: translateY(0);
+            background-color: darken($forest-green, 10%);
+            color: #fdfdfb;
         }
 
         @include tablet {
-            padding: 1rem 2.5rem;
+            padding: 1rem 3rem;
             font-size: 1.4rem;
         }
 
         @include desktop {
-            padding: 1.2rem 3rem;
+            padding: 1.2rem 3.5rem;
             font-size: 1.6rem;
         }
     }
 }
-
