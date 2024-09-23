@@ -1,13 +1,15 @@
-import React from 'react';
-import './ReflectionsListPage.scss';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { API_URL } from '../../utils/utils';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import DeleteModal from '../../components/DeleteModal/DeleteModal.jsx'; 
+import './ReflectionsListPage.scss';
 
 export default function ReflectionsListPage() {
     const [reflections, setReflections] = useState([]);
     const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false); 
+    const [reflectionToDelete, setReflectionToDelete] = useState(null); 
     const navigate = useNavigate(); 
 
     useEffect(() => {
@@ -17,7 +19,6 @@ export default function ReflectionsListPage() {
                 if (!response.ok) throw new Error('Failed to fetch reflections');
 
                 const data = await response.json();
-                console.log(data);
                 setReflections(data);
             } catch (error) {
                 console.error('Error fetching reflections:', error);
@@ -27,19 +28,26 @@ export default function ReflectionsListPage() {
         fetchReflections();
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDeleteClick = (id) => {
+        setReflectionToDelete(id); // Store the ID of the reflection to be deleted
+        setShowModal(true); // Open the delete confirmation modal
+    };
+
+    const handleDeleteConfirm = async () => {
         try {
-            const response = await axios.delete(
-                `${API_URL}/reflections/${id}`
-            );
+            const response = await axios.delete(`${API_URL}/reflections/${reflectionToDelete}`);
             if (response.status === 204 || response.status === 200) {
-                const filteredReflections = reflections.filter(reflection => reflection.id !== id);
+                // Remove the deleted reflection from the list
+                const filteredReflections = reflections.filter(reflection => reflection.id !== reflectionToDelete);
                 setReflections(filteredReflections);
             } else {
                 console.error("Unexpected response status:", response.status);
             }
         } catch (error) {
             console.error("Error deleting reflection:", error);
+        } finally {
+            setShowModal(false); // Close the modal
+            setReflectionToDelete(null); // Clear the stored reflection ID
         }
     };
 
@@ -75,7 +83,7 @@ export default function ReflectionsListPage() {
                             </button>
                             <button
                                 className="reflections-post-it__btn reflections-post-it__btn--dlt"
-                                onClick={() => handleDelete(reflection.id)}
+                                onClick={() => handleDeleteClick(reflection.id)}
                             >
                                 Delete
                             </button>
@@ -83,6 +91,13 @@ export default function ReflectionsListPage() {
                     </div>
                 ))}
             </div>
+
+            {/* Include the DeleteModal component */}
+            <DeleteModal
+                show={showModal}
+                onClose={() => setShowModal(false)} // Close the modal
+                onConfirm={handleDeleteConfirm}    // Confirm the delete action
+            />
         </section>
-    )
+    );
 }

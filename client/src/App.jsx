@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ReflectionsPage from './pages/ReflectionsPage/ReflectionsPage';
 import ReflectionsListPage from './pages/ReflectionsListPage/ReflectionsListPage';
 import EditReflectionPage from './pages/EditReflectionsPage/EditReflectionsPage';
+import EnergyDetailsPage from './pages/EnergyDetailsPage/EnergyDetailsPage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path="/energy-details/:energyLevel" element={<EnergyDetailsPage />} />
         <Route path='/levels/:id/indoor-activities' element={<IndoorActivitiesPage />} />
         <Route path='/levels/:id/outdoor-activities' element={<OutdoorActivitiesPage />} />
         <Route path='/reflections' element={<ReflectionsPage/>}/>

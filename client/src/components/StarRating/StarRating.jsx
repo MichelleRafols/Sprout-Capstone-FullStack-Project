@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaStar } from "react-icons/fa";
 import './starRating.scss';
 
-export default function StarRating({ setEnergyLevel }) {
-
-    const [rating, setRating] = useState(null);
+export default function StarRating({ setEnergyLevel, currentRating }) {
+    const [rating, setRating] = useState(currentRating); // Initialize with currentRating
     const [hover, setHover] = useState(null);
+
+    // Ensure rating is updated if currentRating changes
+    useEffect(() => {
+        if (currentRating !== null) {
+            setRating(currentRating); 
+        }
+    }, [currentRating]);
 
     const handleRatingClick = (currentRate) => {
         setRating(currentRate);
-        setEnergyLevel(currentRate); 
+        setEnergyLevel(currentRate);
     };
 
     return (
@@ -42,5 +48,5 @@ export default function StarRating({ setEnergyLevel }) {
                 );
             })}
         </section>
-    )
+    );
 }
