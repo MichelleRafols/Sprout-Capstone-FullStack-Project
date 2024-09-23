@@ -19,7 +19,7 @@ export default function Navbar() {
                         </NavLink>
                     </li>
                     <li className="navbar__item">
-                        <NavLink to='/reflections'>
+                        <NavLink to='/reflections/list'>
                             Reflections
                         </NavLink>
                     </li>

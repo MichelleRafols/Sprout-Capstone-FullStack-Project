@@ -47,9 +47,19 @@ export default function ReflectionsListPage() {
         navigate(`/reflections/${id}/edit`);
     };
 
+    const handleAddReflection = () => {
+        navigate('/reflections');
+    };
+
     return (
         <section className="reflections-list-page">
             <h1 className="reflections-list-page__title">My Reflections</h1>
+            <button 
+                className="reflections-list-page__add-btn" 
+                onClick={handleAddReflection}
+            >
+                Add New Reflection
+            </button>
             {error && <p className="reflections-list-page__error-message">{error}</p>}
             <div className="reflections-list-page__container">
                 {reflections.map(reflection => (
