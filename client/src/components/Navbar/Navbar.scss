@@ -3,25 +3,94 @@
 @import '../../styles/partials/typography';
 @import '../../styles/partials/variables';
 
-.navbar{
-    &__list{
+.navbar {
+    background-color: #ffffff; 
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
+    border-bottom: 0.0625rem solid #e0e0e0;
+
+    &__logo {
+        height: 3.75rem;
+    }
+
+    &__list {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
         color: $sprout-brown;
+        width: 100%; 
+        margin: 0;
+        padding: 0;
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @include desktop {
+            gap: 3rem; 
+        }
     }
 
-    &__sublist{
+    &__sublist {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.5rem;
+            width: auto;
+            align-items: center;
+        }
+
+        @include desktop {
+            gap: 2rem;
+        }
     }
 
-    &__item{
-        padding: 0 1rem;
+    &__item {
+        padding: 0.5rem 0;
+        list-style: none;
     }
 
-    &__logo{
-        padding: 1rem 0;
+    &__link {
+        text-decoration: none;
+        font-size: 1.25rem; 
+        color: #5f5f5f;
+        padding: 0.4rem 0.8rem; 
+        border-radius: 0.5rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &--active {
+            background-color: #f0f0f0; 
+            color: #333; 
+        }
+
+        &:hover {
+            background-color: #fafafa; 
+            color: #333;
+        }
+
+        @include tablet {
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem; 
+        }
+
+        @include desktop {
+            font-size: 1.2rem;
+            padding: 0.6rem 1.2rem; 
+        }
     }
 }
