@@ -37,6 +37,14 @@ export default function LevelDetails() {
 
     return (
         <div className="level-details">
+            {!energyLevel && (
+                <div className="level-details__prompt">
+                    <h2 className="level-details__prompt-title">🌟 How's Your Energy Today? 🌟</h2>
+                    <p className="level-details__prompt-text">
+                        Take a moment to reflect and let us know how you're feeling! Use the stars below to rate your energy level, and we'll sprout some personalized activity suggestions just for you! 🌱
+                    </p>
+                </div>
+            )}
             <StarRating setEnergyLevel={setEnergyLevel} />
             {energyData && (
                 <section className="level-details">
