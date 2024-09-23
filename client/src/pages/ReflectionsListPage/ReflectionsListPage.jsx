@@ -29,15 +29,14 @@ export default function ReflectionsListPage() {
     }, []);
 
     const handleDeleteClick = (id) => {
-        setReflectionToDelete(id); // Store the ID of the reflection to be deleted
-        setShowModal(true); // Open the delete confirmation modal
+        setReflectionToDelete(id); 
+        setShowModal(true); 
     };
 
     const handleDeleteConfirm = async () => {
         try {
             const response = await axios.delete(`${API_URL}/reflections/${reflectionToDelete}`);
             if (response.status === 204 || response.status === 200) {
-                // Remove the deleted reflection from the list
                 const filteredReflections = reflections.filter(reflection => reflection.id !== reflectionToDelete);
                 setReflections(filteredReflections);
             } else {
@@ -46,8 +45,8 @@ export default function ReflectionsListPage() {
         } catch (error) {
             console.error("Error deleting reflection:", error);
         } finally {
-            setShowModal(false); // Close the modal
-            setReflectionToDelete(null); // Clear the stored reflection ID
+            setShowModal(false); 
+            setReflectionToDelete(null); 
         }
     };
 
@@ -91,12 +90,10 @@ export default function ReflectionsListPage() {
                     </div>
                 ))}
             </div>
-
-            {/* Include the DeleteModal component */}
             <DeleteModal
                 show={showModal}
-                onClose={() => setShowModal(false)} // Close the modal
-                onConfirm={handleDeleteConfirm}    // Confirm the delete action
+                onClose={() => setShowModal(false)}
+                onConfirm={handleDeleteConfirm} 
             />
         </section>
     );

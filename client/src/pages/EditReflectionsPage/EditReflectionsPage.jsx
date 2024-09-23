@@ -41,7 +41,7 @@ export default function EditReflectionsPage() {
                         title: reflection.title || '',
                         body: reflection.body || ''
                     });
-                    console.log('Fetched reflection data set to formData:', formData); // Debugging log
+                    console.log('Fetched reflection data set to formData:', formData); 
                 } else {
                     throw new Error('Invalid data structure');
                 }
@@ -79,7 +79,7 @@ export default function EditReflectionsPage() {
         axios.put(`${API_URL}/reflections/${id}`, formData)
             .then(response => {
                 console.log('Reflection updated successfully:', response.data);
-                navigate('/reflections/list'); // Navigate to the correct endpoint after updating
+                navigate('/reflections/list'); 
             })
             .catch(error => {
                 console.error('Error updating reflection:', error);
