@@ -4,18 +4,19 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrayingHands, faWalking } from '@fortawesome/free-solid-svg-icons';
+import { API_URL } from '../../utils/utils';
 
 export default function IndoorActivitiesPage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [indoorActivities, setIndoorActivities] = useState([]); // Since the response is an array, set the initial state to an empty array
+    const [indoorActivities, setIndoorActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const getIndoorActivitiesList = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/activities/indoor-activities/${id}`);
+                const response = await axios.get(`${API_URL}/activities/indoor-activities/${id}`);
                 console.log(response.data); 
                 setIndoorActivities(response.data); 
             } catch (error) {
