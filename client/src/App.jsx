@@ -25,7 +25,6 @@ function App() {
         <Route path="/reflections/:id/edit" element={<EditReflectionPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
-      {/* <Footer /> */}
     </BrowserRouter>
   )
 }
