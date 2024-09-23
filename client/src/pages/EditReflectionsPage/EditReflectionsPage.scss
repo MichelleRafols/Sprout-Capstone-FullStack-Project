@@ -4,118 +4,186 @@
 @import '../../styles/partials/variables';
 
 .edit-reflection {
-  padding: 2rem;
-  background-color: $background-color;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-
-  &__title {
-    font-size: 2.4rem;
-    color: $primary-color;
-    margin-bottom: 2rem;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  &__form {
-    background-color: #fff;
+    background-color: #fdfdfb;
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 40rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+    max-width: 40rem; 
+    margin: 0 auto;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-  }
+    align-items: center;
 
-  &__input-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  &__label {
-    font-size: 1.2rem;
-    color: $font-color;
-    font-weight: 600;
-  }
-
-  &__input,
-  &__textarea {
-    padding: 0.8rem;
-    border: 0.1rem solid $input-border-color;
-    border-radius: 0.3rem;
-    font-size: 1rem;
-    width: 100%;
-    font-family: inherit;
-    resize: vertical;
-
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-      box-shadow: 0 0 0.2rem $primary-color;
-    }
-  }
-
-  &__textarea {
-    height: 8rem;
-  }
-
-  &__actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
-
-  &__button-cancel {
-    padding: 0.8rem 1.5rem;
-    background-color: #b0bec5; 
-    color: #fff;
-    border: none;
-    border-radius: 0.3rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #90a4ae; 
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
-    &:focus {
-      outline: none;
-    }
-  }
+    &__title {
+        font-size: 2.5rem;
+        color: $sprout-brown;
+        margin-bottom: 1.5rem;
+        text-shadow: 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
+        font-weight: 600;
 
-  &__button-save {
-    padding: 0.8rem 1.5rem;
-    background-color: $secondary-color;
-    color: #fff;
-    border: none;
-    border-radius: 0.3rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+        @include tablet {
+            font-size: 2.8rem;
+        }
 
-    &:hover {
-      background-color: $button-hover-color;
+        @include desktop {
+            font-size: 3rem;
+        }
     }
 
-    &:focus {
-      outline: none;
+    &__input-wrapper {
+        margin-bottom: 1.5rem;
+        width: 100%;
     }
 
-    &:disabled {
-      background-color: #a5d6a7;
-      cursor: not-allowed;
-    }
-  }
+    &__label {
+        font-size: 1.2rem;
+        color: $earth-brown;
+        margin-bottom: 0.5rem;
+        text-align: left;
 
-  .error-message {
-    color: $error-color;
-    font-size: 0.9rem;
-    margin: 0.25rem 0 0;
-  }
+        @include tablet {
+            font-size: 1.4rem;
+        }
+
+        @include desktop {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 0.125rem solid $forest-green;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+        background-color: #fffbe6;
+
+        &:focus {
+            outline: none;
+            border-color: lighten($forest-green, 10%);
+        }
+
+        @include tablet {
+            font-size: 1.2rem;
+        }
+
+        @include desktop {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__textarea {
+        height: 10rem;
+        resize: vertical;
+
+        @include tablet {
+            height: 12.5rem;
+        }
+
+        @include desktop {
+            height: 15.625rem;
+        }
+    }
+
+    &__actions {
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    &__button-cancel {
+        padding: 1rem 2.5rem;
+        background-color: #b0bec5; 
+        color: $sprout-brown;
+        border: 0.125rem solid darken(#b0bec5, 5%);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+            background-color: lighten(#b0bec5, 10%);
+            transform: translateY(-0.1rem);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        @include tablet {
+            padding: 1rem 3rem;
+            font-size: 1.4rem;
+        }
+
+        @include desktop {
+            padding: 1.2rem 3.5rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    &__button-save {
+        padding: 1rem 2.5rem;
+        background-color: #b6e9b6;
+        color: $sprout-brown;
+        border: 0.125rem solid $forest-green;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+            background-color: lighten($forest-green, 10%);
+            color: #fff;
+            transform: translateY(-0.1rem);
+            border-color: darken($forest-green, 5%);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            transform: translateY(0);
+            background-color: darken($forest-green, 10%);
+            color: #fdfdfb;
+        }
+
+        &:disabled {
+            background-color: #a5d6a7;
+            cursor: not-allowed;
+        }
+
+        @include tablet {
+            padding: 1rem 3rem;
+            font-size: 1.4rem;
+        }
+
+        @include desktop {
+            padding: 1.2rem 3.5rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    .error-message {
+        color: $error-color;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+    }
 }
