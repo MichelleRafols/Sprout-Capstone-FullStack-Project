@@ -1,0 +1,11 @@
+@import "../../styles/partials/global";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/typography";
+@import "../../styles/partials/variables";
+
+.footer {
+    display: flex;
+    justify-content: center;
+    color: rgba(158, 140, 140, 0.671);
+    font-size: .75rem;
+}
