@@ -27,7 +27,7 @@ export default function EditReflectionsPage() {
         const fetchReflectionDetails = async () => {
             try {
                 const response = await axios.get(`${API_URL}/reflections/${id}`);
-                console.log('API Response:', response.data); // Debugging log
+                console.log('API Response:', response.data); 
 
                 if (response.status === 200 && response.data) {
                     const reflection = response.data;
@@ -103,7 +103,7 @@ export default function EditReflectionsPage() {
             <form className="edit-reflection__form" onSubmit={handleSubmit}>
                 <div className="edit-reflection__details">
                     <div className="edit-reflection__input-wrapper">
-                        <label className="edit-reflection__label">Reflection Title</label>
+                        <label className="edit-reflection__label">Title</label>
                         <input
                             id="title"
                             name="title"
@@ -118,7 +118,7 @@ export default function EditReflectionsPage() {
                     </div>
 
                     <div className="edit-reflection__input-wrapper">
-                        <label className="edit-reflection__label">Reflection Body</label>
+                        <label className="edit-reflection__label">Content</label>
                         <textarea
                             id="body"
                             name="body"
