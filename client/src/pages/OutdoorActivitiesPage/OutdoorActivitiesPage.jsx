@@ -7,7 +7,6 @@ import { faPrayingHands, faWalking } from '@fortawesome/free-solid-svg-icons';
 
 export default function OutdoorActivitiesPage() {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [outdoorActivities, setOutdoorActivities] = useState([]); // Since the response is an array, set the initial state to an empty array
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

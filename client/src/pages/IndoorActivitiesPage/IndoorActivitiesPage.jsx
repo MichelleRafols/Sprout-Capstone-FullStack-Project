@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './IndoorActivitiesPage.scss';
 import { useEffect, useState } from 'react'
 import axios from 'axios';
@@ -8,7 +8,6 @@ import { API_URL } from '../../utils/utils';
 
 export default function IndoorActivitiesPage() {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [indoorActivities, setIndoorActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
