@@ -3,6 +3,20 @@
 @import "../../styles/partials/typography";
 @import "../../styles/partials/variables";
 
+.indoor-activities-page {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+
+    @include tablet {
+        flex-direction: column;
+    }
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
 .indoor-activities {
     display: grid;
     grid-template-columns: 1fr;
@@ -13,6 +27,7 @@
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
     margin: 0 auto;
     max-width: 100%;
+    flex: 1;
 
     &__item {
         background-color: #fffbe6; 
@@ -21,11 +36,18 @@
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
         display: flex;
         align-items: center;
+        justify-content: space-between;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+        cursor: grab;
+        
         &:hover {
             transform: scale(1.03);
             box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            cursor: grabbing;
+            opacity: 0.8;
         }
 
         @include tablet {
@@ -96,5 +118,78 @@
         @include desktop {
             font-size: 1.6rem;
         }
+    }
+}
+
+.drop-zone {
+    flex: 1;
+    padding: 2rem;
+    border: 2px dashed #ccc;
+    border-radius: 1rem;
+    background-color: #f7f7f7;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    text-align: center;
+
+    &--hover {
+        background-color: #e8f5e9;
+        border-color: #81c784;
+    }
+
+    &__item {
+        background-color: #fffbe6; 
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 1rem;
+        
+        .drop-zone__icon {
+            color: #6b8e23; 
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .drop-zone__name {
+            font-size: 1.2rem;
+            color: $sprout-brown;
+        }
+        
+        .drop-zone__description {
+            font-size: 1rem;
+            color: #2e8b57;
+        }
+
+        .remove-button {
+            background-color: #fd9a9a;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin-left: 1rem;
+
+            &:hover {
+                background-color: #f86d6a;
+            }
+
+            &:active {
+                background-color: #f85252;
+            }
+        }
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #757575;
     }
 }
