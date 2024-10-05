@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { API_URL } from '../../utils/utils';
+import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.jsx'; 
 
 export default function IndoorActivitiesPage() {
     const { id } = useParams();
@@ -110,42 +111,16 @@ export default function IndoorActivitiesPage() {
                 ))}
             </section>
 
-            <section
-                className="drop-zone"
-                onDragOver={(event) => event.preventDefault()}
-                onDrop={handleDrop}
-            >
-                <h2>Drop your activities here</h2>
-                {droppedActivities.length > 0 ? (
-                    droppedActivities.map((activity, index) => (
-                        <div
-                            key={index}
-                            className="drop-zone__item"
-                            draggable
-                            onDragStart={() => handleDragStartFromDropZone(index)}
-                            onDragOver={(event) => handleDragOver(event, index)}
-                            onDrop={handleRearrangeDrop}
-                        >
-                            <div className="drop-zone__top-container">
-                                <div className="drop-zone__icon-container">
-                                    <FontAwesomeIcon icon={activity.indoor_activity_icon} className="drop-zone__icon" />
-                                </div>
-                                <div className="drop-zone__text-container">
-                                    <h2 className="drop-zone__name">
-                                        {activity.indoor_activity_name}
-                                    </h2>
-                                    <h2 className="drop-zone__description">
-                                        {activity.indoor_activity_description}
-                                    </h2>
-                                </div>
-                            </div>
-                            <button onClick={() => handleRemove(index)} className="drop-zone__remove-button">Remove</button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No activities dropped yet.</p>
-                )}
-            </section>
+            <DragAndDrop
+                droppedItems={droppedActivities}
+                renderIcon={(activity) => activity.indoor_activity_icon}
+                renderName={(activity) => activity.indoor_activity_name}
+                renderDescription={(activity) => activity.indoor_activity_description}
+                handleDragStart={handleDragStartFromDropZone}
+                handleDragOver={handleDragOver}
+                handleDrop={handleDrop}
+                handleRemove={handleRemove}
+            />
         </div>
     );
 }

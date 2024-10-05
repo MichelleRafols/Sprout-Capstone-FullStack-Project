@@ -3,6 +3,20 @@
 @import '../../styles/partials/typography';
 @import '../../styles/partials/variables';
 
+.outdoor-activities-page {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+
+    @include tablet {
+        flex-direction: column;
+    }
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
 .outdoor-activities {
     display: grid;
     grid-template-columns: 1fr;
@@ -10,22 +24,30 @@
     padding: 2rem; 
     background-color: #fdfdfb; 
     border-radius: 1rem;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05); 
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
     margin: 0 auto;
     max-width: 100%;
+    flex: 1;
 
     &__item {
-        background-color: #fffbe6;
+        background-color: #fffbe6; 
         padding: 1.5rem;
         border-radius: 0.5rem;
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
         display: flex;
         align-items: center;
+        justify-content: space-between; 
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: grab;
 
         &:hover {
             transform: scale(1.03);
             box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            cursor: grabbing;
+            opacity: 0.8;
         }
 
         @include tablet {
@@ -54,7 +76,7 @@
     }
 
     &__icon {
-        color: #6b8e23;
+        color: #6b8e23; 
         font-size: 2rem;
 
         @include tablet {
@@ -72,7 +94,7 @@
 
     &__name {
         font-size: 1.4rem;
-        color: $sprout-brown; 
+        color: $sprout-brown;
         margin-bottom: 0.5rem;
 
         @include tablet {
@@ -86,7 +108,7 @@
 
     &__description {
         font-size: 1.2rem;
-        color: #2e8b57; 
+        color: #2e8b57;
         line-height: 1.4;
 
         @include tablet {
