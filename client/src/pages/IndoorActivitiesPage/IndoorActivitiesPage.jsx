@@ -1,23 +1,26 @@
 import { useParams } from 'react-router-dom';
 import './IndoorActivitiesPage.scss';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPrayingHands, faWalking } from '@fortawesome/free-solid-svg-icons';
 import { API_URL } from '../../utils/utils';
+import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.jsx'; 
 
 export default function IndoorActivitiesPage() {
     const { id } = useParams();
     const [indoorActivities, setIndoorActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [droppedActivities, setDroppedActivities] = useState([]);
+    const [draggingActivityIndex, setDraggingActivityIndex] = useState(null);
+    const [draggingFromDropZone, setDraggingFromDropZone] = useState(false);
+    const [draggedOverIndex, setDraggedOverIndex] = useState(null);
 
     useEffect(() => {
         const getIndoorActivitiesList = async () => {
             try {
                 const response = await axios.get(`${API_URL}/activities/indoor-activities/${id}`);
-                console.log(response.data); 
-                setIndoorActivities(response.data); 
+                setIndoorActivities(response.data);
             } catch (error) {
                 console.error("Error fetching indoor activities:", error);
                 setError(`Cannot fetch indoor activities list for ${id}`);
@@ -28,16 +31,71 @@ export default function IndoorActivitiesPage() {
         getIndoorActivitiesList();
     }, [id]);
 
+    const handleDragStartFromList = (index) => {
+        setDraggingActivityIndex(index);
+        setDraggingFromDropZone(false);
+    };
+
+    const handleDragStartFromDropZone = (index) => {
+        setDraggingActivityIndex(index);
+        setDraggingFromDropZone(true);
+    };
+
+    const handleDragOver = (event, index) => {
+        event.preventDefault();
+        setDraggedOverIndex(index);
+    };
+
+    const handleDrop = () => {
+        if (draggingActivityIndex !== null) {
+            if (draggingFromDropZone) {
+                handleRearrangeDrop();
+            } else {
+                const draggedActivity = indoorActivities[draggingActivityIndex];
+
+                setDroppedActivities((prevActivities) => {
+                    if (!prevActivities.includes(draggedActivity)) {
+                        return [...prevActivities, draggedActivity];
+                    }
+                    return prevActivities;
+                });
+            }
+
+            setDraggingActivityIndex(null);
+            setDraggedOverIndex(null);
+        }
+    };
+
+    const handleRemove = (index) => {
+        setDroppedActivities(prevActivities => prevActivities.filter((_, i) => i !== index));
+    };
+
+    const handleRearrangeDrop = () => {
+        if (draggingActivityIndex !== null && draggedOverIndex !== null && draggingActivityIndex !== draggedOverIndex) {
+            const updatedActivities = [...droppedActivities];
+            const [draggedActivity] = updatedActivities.splice(draggingActivityIndex, 1);
+            updatedActivities.splice(draggedOverIndex, 0, draggedActivity);
+            setDroppedActivities(updatedActivities);
+            setDraggingActivityIndex(null);
+            setDraggedOverIndex(null);
+        }
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-
-    if (!indoorActivities) return <p>No activity found.</p>;
+    if (!indoorActivities.length) return <p>No indoor activities found.</p>;
 
     return (
-        <section className="indoor-activities">
-            {indoorActivities.length > 0 ? (
-                indoorActivities.map((activity, index) => (
-                    <div key={index} className="indoor-activities__item">
+        <div className="indoor-activities-page">
+            <section className="indoor-activities">
+                <h2>Drag and Drop Indoor Activities</h2>
+                {indoorActivities.map((activity, index) => (
+                    <div
+                        key={index}
+                        className="indoor-activities__item"
+                        draggable
+                        onDragStart={() => handleDragStartFromList(index)}
+                    >
                         <div className="indoor-activities__icon-container">
                             <FontAwesomeIcon icon={activity.indoor_activity_icon} className="indoor-activities__icon" />
                         </div>
@@ -50,10 +108,19 @@ export default function IndoorActivitiesPage() {
                             </h2>
                         </div>
                     </div>
-                ))
-            ) : (
-                <p>No indoor activities found.</p>
-            )}
-        </section>
-    )
+                ))}
+            </section>
+
+            <DragAndDrop
+                droppedItems={droppedActivities}
+                renderIcon={(activity) => activity.indoor_activity_icon}
+                renderName={(activity) => activity.indoor_activity_name}
+                renderDescription={(activity) => activity.indoor_activity_description}
+                handleDragStart={handleDragStartFromDropZone}
+                handleDragOver={handleDragOver}
+                handleDrop={handleDrop}
+                handleRemove={handleRemove}
+            />
+        </div>
+    );
 }
