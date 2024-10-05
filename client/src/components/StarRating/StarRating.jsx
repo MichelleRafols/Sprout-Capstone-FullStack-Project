@@ -3,10 +3,9 @@ import { FaStar } from "react-icons/fa";
 import './starRating.scss';
 
 export default function StarRating({ setEnergyLevel, currentRating }) {
-    const [rating, setRating] = useState(currentRating); // Initialize with currentRating
+    const [rating, setRating] = useState(currentRating);
     const [hover, setHover] = useState(null);
 
-    // Ensure rating is updated if currentRating changes
     useEffect(() => {
         if (currentRating !== null) {
             setRating(currentRating); 

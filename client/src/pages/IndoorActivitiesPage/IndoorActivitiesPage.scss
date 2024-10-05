@@ -3,6 +3,20 @@
 @import "../../styles/partials/typography";
 @import "../../styles/partials/variables";
 
+.indoor-activities-page {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+
+    @include tablet {
+        flex-direction: column;
+    }
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
 .indoor-activities {
     display: grid;
     grid-template-columns: 1fr;
@@ -13,6 +27,7 @@
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
     margin: 0 auto;
     max-width: 100%;
+    flex: 1;
 
     &__item {
         background-color: #fffbe6; 
@@ -21,11 +36,18 @@
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
         display: flex;
         align-items: center;
+        justify-content: space-between;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+        cursor: grab;
+        
         &:hover {
             transform: scale(1.03);
             box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            cursor: grabbing;
+            opacity: 0.8;
         }
 
         @include tablet {
@@ -98,3 +120,5 @@
         }
     }
 }
+
+
